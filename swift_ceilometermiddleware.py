@@ -40,10 +40,13 @@ class Swift(object):
         res = self._app(env, start_response)
         req = Request(env)
 
-        if req.method == 'PUT' and '_thumb' not in container:
+        if req.method == 'PUT':
             try:
                 vrs, account, container, obj = req.split_path(4, 4, True)
             except ValueError:
+                return res
+            
+            if '_thumb' in container:
                 return res
 
             self.logger.info(
