@@ -50,7 +50,7 @@ def main():
             'message_id': 'ac6ce4ae-546a-47cc-a0cb-ad1bae44ca61',
             'traits': [
                 # key, type, value
-                ['project_id',1,project_id]
+                ['project_id',1,project_id],
                 ['service',1,'nova'],
                 ['vm_name',1,'new_instance'],
                 ['vm_id',1,'ba2b30a0-1b14-4ad4-9a66-f24ece912cad'],
