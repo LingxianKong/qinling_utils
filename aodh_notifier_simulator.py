@@ -27,10 +27,11 @@ def main():
     EOF
     """
     conf_file = '/etc/lingxian/lingxian.conf'
-    publisher_id = "test.lingxian_host"
     project_id = '360d69d06890407eab1a44573c1f3776'
+    publisher_id = "test.lingxian_host"
 
     conf = cfg.ConfigOpts()
+    conf.register_opts([cfg.StrOpt('project_id')], None)
     conf(None, project='lingxian', validate_default_values=False,
          default_config_files=[conf_file])
     transport = oslo_messaging.get_notification_transport(conf)
@@ -45,14 +46,14 @@ def main():
         {},
         event_type='',
         payload={
-            'event_type': 'objectstorage.object.upload',
+            'event_type': 'compute.instance.create',
             'message_id': 'ac6ce4ae-546a-47cc-a0cb-ad1bae44ca61',
             'traits': [
                 # key, type, value
-                ['service',1,'ceilometermiddleware'],
-                ['object',1,'stackrc'],
-                ['container',1,'lingxian'],
                 ['project_id',1,project_id]
+                ['service',1,'nova'],
+                ['vm_name',1,'new_instance'],
+                ['vm_id',1,'ba2b30a0-1b14-4ad4-9a66-f24ece912cad'],
             ],
             'message_signature': 'bcfb59e386d5375dbb7ded9910900a98536f168d377f52ae7ffd89159c0019f5',
             'raw': {},
